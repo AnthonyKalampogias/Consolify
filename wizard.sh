@@ -16,6 +16,7 @@ sudo apt update && sudo apt install -y wakeonlan bluetooth bluez
 
 # Ask for PC MAC address
 read -p "Enter your PC's MAC address (format: AA:BB:CC:DD:EE:FF): " PC_MAC
+
 # Ask for controllers
 CONTROLLER_MACS=()
 while true; do
@@ -35,37 +36,16 @@ if [[ "$confirm" != "y" ]]; then
     exit 1
 fi
 
-# Ask for custom script path
-read -p "Enter the directory where the script should be installed: " SCRIPT_PATH
-mkdir -p "$SCRIPT_PATH/logs"
+# Save config file
+CONFIG_FILE="$(dirname "$0")/config.env"
+echo "Saving configuration to $CONFIG_FILE..."
+echo "PC_MAC=\"$PC_MAC\"" > "$CONFIG_FILE"
+echo "CONTROLLER_MACS=(${CONTROLLER_MACS[*]})" >> "$CONFIG_FILE"
 
-# Create and update the main script
-cat <<EOF > "$SCRIPT_PATH/dualsense_wol.sh"
-#!/bin/bash
-
-CONTROLLER_MACS=(${CONTROLLER_MACS[*]})
-PC_MAC="$PC_MAC"
-LOG_FILE="$SCRIPT_PATH/logs/dualsense_wol.log"
-
-echo "Starting WOL listener..." >> "\$LOG_FILE"
-
-while true; do
-    for MAC in "\${CONTROLLER_MACS[@]}"; do
-        if hcitool scan | grep -q "\$MAC"; then
-            echo "\$(date): Controller \$MAC detected! Sending Wake-on-LAN..." >> "\$LOG_FILE"
-            wakeonlan "\$PC_MAC"
-            sleep 10  # Prevent multiple WOL packets
-        fi
-    done
-    sleep 5  # Scan every 5 seconds
-done
-EOF
-
-chmod +x "$SCRIPT_PATH/dualsense_wol.sh"
-
-# Add to crontab for auto-start
+# Set up crontab to start script on boot
+SCRIPT_PATH="$(dirname "$0")/dualsense_wol.sh"
 echo "Configuring startup script..."
-(crontab -l 2>/dev/null; echo "@reboot $SCRIPT_PATH/dualsense_wol.sh &") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot $SCRIPT_PATH &") | crontab -
 
 echo "Setup complete! The script will run on startup. You can also run it manually with:"
-echo "$SCRIPT_PATH/dualsense_wol.sh"
+echo "$SCRIPT_PATH"
