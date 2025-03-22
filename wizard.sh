@@ -43,7 +43,7 @@ echo "PC_MAC=\"$PC_MAC\"" > "$CONFIG_FILE"
 echo "CONTROLLER_MACS=(${CONTROLLER_MACS[*]})" >> "$CONFIG_FILE"
 
 # Set up crontab to start script on boot
-SCRIPT_PATH="$(dirname "$0")/dualsense_wol.sh"
+SCRIPT_PATH="$(dirname "$0")/consolify_main.sh"
 echo "Configuring startup script..."
 (crontab -l 2>/dev/null; echo "@reboot $SCRIPT_PATH &") | crontab -
 
