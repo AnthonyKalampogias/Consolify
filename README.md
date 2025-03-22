@@ -105,7 +105,7 @@ sudo ./wizard.sh
 If you don't want to reboot, start the script manually:
 
 ```
-./consolify_main.sh
+./consolify.sh
 ```
 
 ### Logging
