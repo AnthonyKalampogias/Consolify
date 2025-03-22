@@ -114,16 +114,14 @@ Logs are stored in logs/consolify.log for debugging.
 
 
 ## Future Steps
-Setup a dualboot system with Bazzite and have a shared disk partition for the games so both windows and bazzite can see the same game library.
 
-So in order to move forward with this project I need to get the next step ready, which is 
+Setup a dualboot system with Bazzite and have a shared disk partition for the games so both Windows and Bazzite can see the same game library.
 
-> *On boot, don't require login and open preferred game client immidiately*
+So in order to move forward with this project, I need to get the next step ready, which is 
 
-To do this my plan is to:
+> *On boot, don't require login and open preferred game client immediately*
 
-1. Split my disk in 3 partitions, (I have a 2TB nvme on my PC you can do the same by just having multiple disks or tailor according to your setup), 1 for windows, 1 for bazzite and the last big on that will hold the games. Will expand more on this as I go (ref. [reddit post](https://www.reddit.com/r/ROGAlly/comments/1gtc9qz/bazzite_dual_boot_with_shared_internal_game_drive/]))
-2. Setup steam big picture to run on startup
+To do this, my plan is to:
 
-Good luck and have fun
----
+1. Split my disk into 3 partitions (I have a 2TB NVMe on my PC; you can do the same by just having multiple disks or tailoring it according to your setup): one for Windows, one for Bazzite, and the last one for games. I'll expand more on this as I go (ref. [reddit post](https://www.reddit.com/r/ROGAlly/comments/1gtc9qz/bazzite_dual_boot_with_shared_internal_game_drive/)).
+2. Set up Steam Big Picture to run on startup.
