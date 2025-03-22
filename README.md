@@ -28,6 +28,12 @@ With **Consolify**, I aimed for a straightforward solution—powering your PC **
 
 ## Project Progress  
 
+### Overall Progress  
+**Current Progress: 50%** 
+---
+
+<!-- [----------50%----------]
+```█████████░░░░░░░░░░``` -->
 ### Features  
 - [x] Wake-on-LAN setup for PC  
 - [x] Raspberry Pi Bluetooth scanning  
@@ -35,11 +41,7 @@ With **Consolify**, I aimed for a straightforward solution—powering your PC **
 - [ ] Seamless controller detection without pairing mode*  
 - [ ] Support for more controller types  
 - [ ] Full console-like experience (auto-login, app launch)  
-
-### Overall Progress  
-**Current Progress: 50%**  
-<!-- [----------50%----------]
-```█████████░░░░░░░░░░``` -->
+ 
 
 
 At first, I thought this would be simple. I saw a video where someone used an **Xbox dongle** with the "allow this device to wake the computer" option. Unfortunately, my **Bluetooth adapter didn’t have this feature**, and neither did my **DualSense**.  
@@ -106,6 +108,22 @@ If you don't want to reboot, start the script manually:
 ./consolify_main.sh
 ```
 
-Logging
+### Logging
 
 Logs are stored in logs/consolify.log for debugging.
+
+
+## Future Steps
+Setup a dualboot system with Bazzite and have a shared disk partition for the games so both windows and bazzite can see the same game library.
+
+So in order to move forward with this project I need to get the next step ready, which is 
+
+> *On boot, don't require login and open preferred game client immidiately*
+
+To do this my plan is to:
+
+1. Split my disk in 3 partitions, (I have a 2TB nvme on my PC you can do the same by just having multiple disks or tailor according to your setup), 1 for windows, 1 for bazzite and the last big on that will hold the games. Will expand more on this as I go (ref. [reddit post](https://www.reddit.com/r/ROGAlly/comments/1gtc9qz/bazzite_dual_boot_with_shared_internal_game_drive/]))
+2. Setup steam big picture to run on startup
+
+Good luck and have fun
+---
